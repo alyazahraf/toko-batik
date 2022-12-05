@@ -53,16 +53,18 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        <li class="nav-item">
-                            {{-- <?php
-                            $pesanan_utama = \App\Pesanan::where('user_id', Auth::user()->id)
-                                ->where('status', 0)
-                                ->first();
-                            $notif = \App\Keranjang::where('pesanan_id', $pesanan_utama->id)->count();
-                            ?> --}}
-                            <a class="nav-link" href="{{ route('checkout') }}"><i class="fa fa-shopping-cart"></i><span
-                                    class="badge badge-danger"></a>
-                        </li>
+                        {{-- <li class="nav-item"> --}}
+                        {{-- <?php
+                        $pesanan_utama = \App\Pesanan::where('user_id', Auth::user()->id)
+                            ->where('status', 0)
+                            ->first();
+                        $notif = \App\Keranjang::where('pesanan_id', $pesanan_utama->id)->count();
+                        ?> --}}
+                        <a class="nav-link" href="{{ route('checkout') }}"><i class="fa fa-shopping-cart"></i><span
+                                class="badge badge-danger"></a>
+                        <a class="nav-link" href="{{ route('softDelete') }}"><i class="fa fa-trash"></i><span
+                                class="badge badge-danger"></a>
+                        {{-- </li> --}}
                         {{-- <li class="nav-it">
                             <a class="nav-link" href="{{ route('dlt', $barang->id) }}"><i
                                     class="fa-solid fa-trash"></i><span class="badge badge-danger"></a>

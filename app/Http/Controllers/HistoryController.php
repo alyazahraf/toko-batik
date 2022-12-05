@@ -44,7 +44,7 @@ class HistoryController extends Controller
         );
 
         $keranjangs = $request->keranjang;
-        $query = "UPDATE keranjangs SET pesanan_id = :pesanan_id WHERE id in (";
+        $query = "UPDATE keranjangs SET pesanan_id = :pesanan_id, is_checkout = 1 WHERE id in (";
         foreach ($keranjangs as $keranjang) {
             $query .= "$keranjang";
             if ($keranjang != collect($keranjangs)->last()) {
@@ -56,6 +56,7 @@ class HistoryController extends Controller
         DB::update($query, [
             'pesanan_id' => $pesanan
         ]);
+
         return redirect()->route('detail')->with('success', 'Data Batik berhasil disimpan');
     }
 

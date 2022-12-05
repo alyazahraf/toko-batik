@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $datas = DB::select('select * from barangs WHERE is_deleted = 0');
+        $datas = DB::select('select * from barangs WHERE is_deleted = 0 ');
         return view('home')
 
             ->with('barangs', $datas);
@@ -35,6 +35,23 @@ class HomeController extends Controller
     public function soft($id)
     {
         DB::update('UPDATE barangs SET is_deleted = 1 WHERE id = :id', ['id' => $id]);
+
+        return redirect()->route('home')->with('success', 'Data Barang berhasil dihapus');
+    }
+
+    public function softIndex()
+    {
+
+        $datas = DB::select('select * from barangs WHERE is_deleted = 1');
+        return view('soft')
+
+            ->with('barangs', $datas);
+    }
+
+
+    public function restore($id)
+    {
+        DB::update('UPDATE barangs SET is_deleted = 0 WHERE id = :id', ['id' => $id]);
 
         return redirect()->route('home')->with('success', 'Data Barang berhasil dihapus');
     }

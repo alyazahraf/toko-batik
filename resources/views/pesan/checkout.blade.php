@@ -65,13 +65,18 @@
                                     <td>
                                         <form method="post" action="{{ route('bayar') }}">
                                             @csrf
-                                            @foreach ($keranjangs as $keranjang)
+                                            @forelse ($keranjangs as $keranjang)
                                                 <input type="hidden" name="keranjang[]"
                                                     value="{{ $keranjang->keranjang_id }}">
-                                            @endforeach
-                                            <input type="hidden" name="total_harga" value="{{ $total_harga }}">
-                                            <button type="submit" class="btn btn-primary mt-3"><i
-                                                    class="fa fa-shopping-cart"></i>Check Out</button>
+
+                                                <input type="hidden" name="total_harga" value="{{ $total_harga }}">
+                                                <button type="submit" class="btn btn-primary mt-3"><i
+                                                        class="fa fa-shopping-cart"></i>Check Out</button>
+
+                                            @empty
+
+                                                <input type="hidden" name="total_harga" value="{{ $total_harga }}">
+                                            @endforelse
                                         </form>
                                     </td>
                                 </tr>

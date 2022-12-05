@@ -29,14 +29,15 @@
                             <br><br>
                             <a href="{{ url('edit') }}/{{ $barang->id }}" class="btn btn-primary"><i
                                     class="fa-solid fa-pen-to-square"></i> Edit</a>
-                            <form method="POST" action="{{ route('delete', $barang->id) }}"> @csrf
+                            {{-- <form method="POST" action="{{ route('delete', $barang->id) }}"> @csrf
                                 <br><button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bstarget="#hapusModal{{ $barang->id }}"><i class="fa-solid fa-trash"></i> Hapus
+                                    data-bstarget="#hapusModal{{ $barang->id }}"><i class="fa-solid fa-trash"></i>
+                                    Hapus
                                 </button>
-                            </form>
+                            </form> --}}
                             <form class="ml-1 form-inline" method="POST" action="{{ route('soft', $barang->id) }}">
                                 @csrf
-                                <br><button onclick="return confirm('{{ __('Are you sure you want to destroy?') }}')"
+                                <br><button onclick="return confirm('{{ __('Anda Yakin Ingin Menghapus?') }}')"
                                     type="submit" class="btn btn-warning">Hapus</button>
                             </form>
 

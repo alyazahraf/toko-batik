@@ -91,10 +91,13 @@ class PesanController extends Controller
         return redirect()->route('home')->with('success', 'Data Batik berhasil dihapus');
     }
 
+
+
     public function pesan(Request $request, $id)
     {
         return redirect()->route('pesanan')->with('success', 'Data Batik berhasil disimpan');
     }
+
 
 
     public function order(Request $request, $id)
@@ -104,7 +107,7 @@ class PesanController extends Controller
 
         // $cek_keranjang = Keranjang::where('barang_id', $barang->id)->where('pesanan_id', $pesanan_baru->id)->first();
         $cart = DB::select(
-            'select * from keranjangs where user_id = :user_id AND barang_id = :barang_id',
+            'select * from keranjangs where user_id = :user_id AND barang_id = :barang_id AND is_checkout = 0',
             [
                 'user_id' => Auth::user()->id,
                 'barang_id' => $id
@@ -150,6 +153,7 @@ class PesanController extends Controller
             ->select(["keranjangs.*", "barangs.*", "keranjangs.id as keranjang_id"])
             ->join('barangs', 'barangs.id', '=', 'keranjangs.barang_id')
             ->where('user_id', Auth::user()->id)
+            ->where('is_checkout', 0)
             ->get();
 
 
